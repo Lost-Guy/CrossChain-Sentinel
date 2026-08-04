@@ -1,0 +1,74 @@
+# =========================================================================
+# Build & Binary Artifacts
+# =========================================================================
+build/
+bin/
+lib/
+out/
+dist/
+
+# CMake Artifacts
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Testing/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+*.cmake
+!CMakeLists.txt
+!cmake/*.cmake
+
+# C/C++ Compiled Artifacts
+*.o
+*.obj
+*.so
+*.dylib
+*.dll
+*.a
+*.lib
+*.lai
+*.la
+*.lo
+
+# Executables
+crosschain-sentinel
+sentinel_bin
+sentinel_tests
+
+# =========================================================================
+# Project Specific Logs & Simulation Outputs
+# =========================================================================
+*.log
+sentinel_simulation.log
+
+# =========================================================================
+# IDEs & Editor Configuration
+# =========================================================================
+# Visual Studio Code
+.vscode/
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/settings.json
+*.code-workspace
+
+# CLion / JetBrains
+.idea/
+cmake-build-*/
+
+# Vim / Emacs
+*~
+*.swp
+*.swo
+.#*
+
+# Clangd & LSP Caches
+.clangd/
+.cache/
+
+# =========================================================================
+# OS Generated Files
+# =========================================================================
+.DS_Store
+Thumbs.db
