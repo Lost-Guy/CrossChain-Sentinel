@@ -38,6 +38,8 @@ find_package(GTest REQUIRED)
 add_library(sentinel_core
     src/core/logger.cpp
     src/utils/config.cpp
+	src/core/random_engine.cpp
+    src/core/event_scheduler.cpp
 )
 
 target_include_directories(sentinel_core PUBLIC include)
@@ -56,8 +58,14 @@ set_target_properties(sentinel_bin PROPERTIES OUTPUT_NAME "crosschain-sentinel")
 
 # Unit Tests Target
 enable_testing()
-add_executable(sentinel_tests tests/test_logger.cpp)
+add_executable(sentinel_tests 
+    tests/test_logger.cpp
+    tests/test_event_scheduler.cpp
+)
 target_link_libraries(sentinel_tests PRIVATE sentinel_core GTest::gtest_main)
+
+include(GoogleTest)
+gtest_discover_tests(sentinel_tests)
 
 include(GoogleTest)
 gtest_discover_tests(sentinel_tests)
