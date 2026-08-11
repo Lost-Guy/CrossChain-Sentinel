@@ -33,6 +33,7 @@ find_package(Boost REQUIRED COMPONENTS system thread)
 find_package(OpenSSL REQUIRED)
 find_package(spdlog REQUIRED)
 find_package(GTest REQUIRED)
+find_package(ZLIB REQUIRED)
 
 # Core Library Target
 add_library(sentinel_core
@@ -40,6 +41,7 @@ add_library(sentinel_core
     src/utils/config.cpp
 	src/core/random_engine.cpp
     src/core/event_scheduler.cpp
+	src/core/protocol.cpp
 )
 
 target_include_directories(sentinel_core PUBLIC include)
@@ -49,6 +51,7 @@ target_link_libraries(sentinel_core PUBLIC
     Boost::thread
     OpenSSL::Crypto
     PkgConfig::LIBSODIUM
+	ZLIB::ZLIB
 )
 
 # Executable Target
@@ -61,11 +64,9 @@ enable_testing()
 add_executable(sentinel_tests 
     tests/test_logger.cpp
     tests/test_event_scheduler.cpp
+	tests/test_protocol.cpp
 )
 target_link_libraries(sentinel_tests PRIVATE sentinel_core GTest::gtest_main)
-
-include(GoogleTest)
-gtest_discover_tests(sentinel_tests)
 
 include(GoogleTest)
 gtest_discover_tests(sentinel_tests)
