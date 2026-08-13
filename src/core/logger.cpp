@@ -9,6 +9,13 @@ std::shared_ptr<spdlog::logger> Logger::s_logger;
 void Logger::init(const std::string& logger_name, spdlog::level::level_enum level) {
     if (s_logger) return; // Prevent re-initialization
 
+    // Check if spdlog global registry already holds this logger
+    auto existing_logger = spdlog::get(logger_name);
+    if (existing_logger) {
+        s_logger = existing_logger;
+        return;
+    }
+
     auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
     console_sink->set_pattern("[%Y-%m-%d %H:%M:%S.%e] [%n] [%^%l%$] [thread %t] %v");
 
