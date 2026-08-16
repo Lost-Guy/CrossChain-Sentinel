@@ -42,6 +42,8 @@ add_library(sentinel_core
 	src/core/random_engine.cpp
     src/core/event_scheduler.cpp
 	src/core/protocol.cpp
+	src/net/peer_session.cpp
+    src/net/peer_manager.cpp
 )
 
 target_include_directories(sentinel_core PUBLIC include)
@@ -65,6 +67,7 @@ add_executable(sentinel_tests
     tests/test_logger.cpp
     tests/test_event_scheduler.cpp
 	tests/test_protocol.cpp
+	tests/test_p2p_network.cpp
 )
 target_link_libraries(sentinel_tests PRIVATE sentinel_core GTest::gtest_main)
 
