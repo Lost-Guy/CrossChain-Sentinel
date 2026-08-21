@@ -44,6 +44,8 @@ add_library(sentinel_core
 	src/core/protocol.cpp
 	src/net/peer_session.cpp
     src/net/peer_manager.cpp
+	src/crypto/crypto_engine.cpp
+    src/crypto/signature_verifier.cpp
 )
 
 target_include_directories(sentinel_core PUBLIC include)
@@ -68,6 +70,7 @@ add_executable(sentinel_tests
     tests/test_event_scheduler.cpp
 	tests/test_protocol.cpp
 	tests/test_p2p_network.cpp
+	tests/test_crypto.cpp
 )
 target_link_libraries(sentinel_tests PRIVATE sentinel_core GTest::gtest_main)
 
