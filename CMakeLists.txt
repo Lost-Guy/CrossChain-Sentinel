@@ -46,6 +46,10 @@ add_library(sentinel_core
     src/net/peer_manager.cpp
 	src/crypto/crypto_engine.cpp
     src/crypto/signature_verifier.cpp
+	src/ledger/transaction.cpp
+    src/ledger/mempool.cpp
+    src/ledger/ledger_state.cpp
+    src/ledger/chain_state.cpp
 )
 
 target_include_directories(sentinel_core PUBLIC include)
@@ -71,6 +75,7 @@ add_executable(sentinel_tests
 	tests/test_protocol.cpp
 	tests/test_p2p_network.cpp
 	tests/test_crypto.cpp
+	tests/test_ledger.cpp
 )
 target_link_libraries(sentinel_tests PRIVATE sentinel_core GTest::gtest_main)
 
