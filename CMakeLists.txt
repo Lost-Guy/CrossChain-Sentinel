@@ -50,6 +50,8 @@ add_library(sentinel_core
     src/ledger/mempool.cpp
     src/ledger/ledger_state.cpp
     src/ledger/chain_state.cpp
+	src/relayer/relayer_node.cpp
+    src/relayer/relayer_engine.cpp
 )
 
 target_include_directories(sentinel_core PUBLIC include)
@@ -76,6 +78,7 @@ add_executable(sentinel_tests
 	tests/test_p2p_network.cpp
 	tests/test_crypto.cpp
 	tests/test_ledger.cpp
+	tests/test_relayer.cpp
 )
 target_link_libraries(sentinel_tests PRIVATE sentinel_core GTest::gtest_main)
 
