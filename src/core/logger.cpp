@@ -7,9 +7,8 @@ namespace sentinel::core {
 std::shared_ptr<spdlog::logger> Logger::s_logger;
 
 void Logger::init(const std::string& logger_name, spdlog::level::level_enum level) {
-    if (s_logger) return; // Prevent re-initialization
+    if (s_logger) return;
 
-    // Check if spdlog global registry already holds this logger
     auto existing_logger = spdlog::get(logger_name);
     if (existing_logger) {
         s_logger = existing_logger;
@@ -28,12 +27,18 @@ void Logger::init(const std::string& logger_name, spdlog::level::level_enum leve
     s_logger->set_level(level);
     s_logger->flush_on(spdlog::level::trace);
     
-    spdlog::register_logger(s_logger);
+    if (!spdlog::get(s_logger->name())) {
+        try {
+            spdlog::register_logger(s_logger);
+        } catch (const spdlog::spdlog_ex&) {
+            // Logger already in global registry
+        }
+    }
 }
 
 std::shared_ptr<spdlog::logger>& Logger::get() {
     if (!s_logger) {
-        init(); // Fallback default initialization
+        init();
     }
     return s_logger;
 }
