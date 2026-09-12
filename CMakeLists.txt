@@ -55,6 +55,8 @@ add_library(sentinel_core
 	src/adversary/fault_injector.cpp
     src/adversary/attack_harness.cpp
 	src/evm/evm_verifier.cpp
+	src/metrics/metrics_collector.cpp
+    src/metrics/benchmark_engine.cpp
 )
 
 target_include_directories(sentinel_core PUBLIC include)
@@ -84,6 +86,7 @@ add_executable(sentinel_tests
 	tests/test_relayer.cpp
 	tests/test_adversary.cpp
 	tests/test_evm_validation.cpp
+	tests/test_metrics.cpp
 )
 target_link_libraries(sentinel_tests PRIVATE sentinel_core GTest::gtest_main)
 
